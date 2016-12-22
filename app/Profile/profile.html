@@ -1,0 +1,86 @@
+<div ui-view></div>
+
+<style>
+	body {
+		background-image: url("../app/styles/pictures/laptop1.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center;
+	}
+	@media screen and (max-width: 991px) {
+		body{
+			background-image: url("../app/styles/pictures/lvlaptop.jpeg");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			background-position: center;	
+		}
+	}
+</style>
+
+<div class="container" id="loginBox">
+	<div class="container">
+		<div class="row row-flex row-flex-wrap">
+			<div class="col-md-6">
+				<div class="well">
+					<!-- profile picture image box -->
+					<h2 style="margin:0;padding:0;"><span style="color:black;">{{vm.name}}'s</span> PAGE</h2>
+				</div>
+				<form>
+				<!-- profile picture image box -->
+					<img id="myImg" height="250" width="250" ng-src="https://appventful.herokuapp.com/api/files/{{vm.id}}" onerror="this.src='https://appventful.herokuapp.com/api/files'" alt="your image" ngf-select="upload($file, vm.id)" placeholder="Add a profile picture"/>
+				</form>
+			</div>
+
+			<!-- profile information box -->
+			<div class="col-md-6">
+				<div class="well clearfix">
+					<h2>PROFILE INFORMATION</h2>
+					<div ng-switch="vm.editor">
+						<ul id="proInfo" ng-switch-when="static">
+							<li><p><label class="headings">NAME:</label> {{vm.name}}</p></li>
+							<li><p><label class="headings">EMAIL:</label> {{vm.email}}</p></li>
+							<li><p><label class="headings">PHONE NUMBER:</label> {{vm.number}}</p></li>
+						<!-- edit profile button -->
+							<button type="button" class="btn btn-info" id="editBtn" style="float: right" ng-click="vm.editor = 'editor'">Edit</button>
+						</ul>
+						<ul id="proInfo" ng-switch-when="editor">
+							<li><p><label class="headings">NAME:</label> <input type="text" ng-model="vm.name"></p></li>
+							<li><p><label class="headings">EMAIL:</label> <input type="text" ng-model="vm.email"></p></li>
+							<li><p><label class="headings">PHONE NUMBER:</label> <input type="text" ng-model="vm.number"></p></li>
+						<!-- edit profile button -->
+							<button type="button" class="btn btn-info" id="editBtn" style="float: right" 
+								ng-click="vm.editProfile(vm.id, vm.token, vm.name, vm.email, vm.number);
+								$state.reload();" >Submit</button>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- upcoming events list -->
+			<div class="col-md-12">
+				<div class="well">
+					<table class="table" id="pevents_table">
+						<a ui-sref="upcomingevents"><thead><label class="headings"><h2><span id="profileEvent">UPCOMING EVENTS</span></h2></label></thead></a>
+						<tr class="border_bottom" ng-hide="vm.events.length === 0">
+							<th>NAME</th>
+							<th>ADDRESS</th>
+							<th>DATE</th>
+							<th>TEXT INFO</th>
+							<th>DELETE</th>
+						</tr>
+						<!-- upcoming events to be setup in ng-repeat to populte events -->
+						<tr ng-repeat="event in vm.events">
+							<td>{{event.eventname}}</td>
+							<td>{{event.address}}</td>
+							<td>{{event.datetime | date:'EEEE, MMMM d, y h:mm a' }}</td>
+							<td><button type="button" class="btn btn-info" id="btn-sm" ng-click="vm.sendUserReminder(event._id, event.eventname, event.address, event.datetime)" id="mapBtn">Send Reminder</button></td>
+							<!-- remove upcoming event button -->
+							<td><button type="button" class="btn btn-info pull-left" id="btn-sm" style="float: right" ng-click="vm.removeEvent(event._id)">Remove Event</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div> <!-- closes container -->
+</div> <!-- closes container loginBox -->

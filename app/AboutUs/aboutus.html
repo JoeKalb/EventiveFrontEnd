@@ -1,0 +1,63 @@
+<div ui-view></div>
+
+<style>
+	body {
+		background-image: url("../app/styles/pictures/laptop1.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;	
+		background-position: center;
+	}
+	@media screen and (max-width: 991px) {
+	body{
+		background-image: url("../app/styles/pictures/lvlaptop.jpeg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;	
+		background-position: center;
+	}
+}
+</style>
+
+<body>
+	<div class="slideshow-container">
+		<div class="mySlides fade">
+		    <div class="numbertext">1 / 5</div>
+		    <img src="../app/styles/pictures/devTeamSlide.jpg" style="width:100%;">
+		</div>
+
+		<div class="mySlides fade">
+		    <div class="numbertext">2 / 5</div>
+		    <img src="../app/styles/pictures/joeSlide.jpg" style="width:100%;">
+		</div>
+
+		<div class="mySlides fade">
+		    <div class="numbertext">3 / 5</div>
+		    <img src="../app/styles/pictures/johnSlide.jpg" style="width:100%;">
+		</div>
+
+		<div class="mySlides fade">
+		    <div class="numbertext">4 / 5</div>
+		    <img src="../app/styles/pictures/conceptionSlide.jpg" style="width:100%;">
+		</div>
+
+		<div class="mySlides fade">
+		    <div class="numbertext">5 / 5</div>
+		    <img src="../app/styles/pictures/techStackSlide.jpg" style="width:100%;">
+		</div>
+		<div>
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<br>
+
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span> 
+			<span class="dot" onclick="currentSlide(2)"></span> 
+			<span class="dot" onclick="currentSlide(3)"></span> 
+			<span class="dot" onclick="currentSlide(4)"></span>
+			<span class="dot" onclick="currentSlide(5)"></span>  
+		</div>
+	</div>
+
+</body>
